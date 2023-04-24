@@ -10,6 +10,8 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   void getLocation() async {
+    LocationPermission permission = await Geolocator.requestPermission();
+
     Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
     );
@@ -26,6 +28,7 @@ class _LoadingState extends State<Loading> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
+            getLocation();
             print('Pressed');
           },
           style: ElevatedButton.styleFrom(
