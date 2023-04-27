@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_flutter_08_codingchef04_weather/data/my_location.dart';
 import 'package:study_flutter_08_codingchef04_weather/data/network.dart';
+import 'package:study_flutter_08_codingchef04_weather/screens/weather_screen.dart';
 
 //const apikey = 'OdOcc1131b44cd6ea0027e60e69dc007'; // 코딩쉐프의 OpenWeather API Key
 const apikey = '1ad9396df086a1befad00d8f03028105'; // OpenWeather API Key
@@ -37,21 +38,16 @@ class _LoadingState extends State<Loading> {
     //     'https://samples.openweathermap.org/data/2.5/weather?q=London&appid=b1b15e88fa797225412429c1c50c122a1');
 
     Network network = Network(
-        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude3&lon=$longitude3&appid=$apikey');
+        'https://api.openweathermap.org/data/2.5/weather?units=metric&lat=$latitude3&lon=$longitude3&appid=$apikey');
 
     //https: //api.openweathermap.org/data/2.5/weather?lat=37.785834&lon=122.406417&appid=1ad9396df086a1befad00d8f03028105
 
     var weatherData = await network.getJsonData();
     print('--------- weatherData : $weatherData');
 
-    // var myJson = weatherData['weather'][0]['description'];
-    // print('--------- myJson : $myJson');
-
-    // var wind = weatherData['wind']['speed'];
-    // print('--------- wind : $wind');
-
-    // var id = weatherData['id'];
-    // print('--------- id : $id');
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return WeatherScreen(parseWeatherData: weatherData);
+    }));
   }
 
   @override

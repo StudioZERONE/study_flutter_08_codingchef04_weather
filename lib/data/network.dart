@@ -10,9 +10,9 @@ class Network {
 
     if (response.statusCode == 200) {
       String jsonData = response.body;
-      String parsingData = jsonDecode(jsonData);
+      var parsingData = jsonDecode(jsonData);
 
-      print('--------- parsingData : $parsingData');
+      //print('--------- parsingData : $parsingData');
 
       return parsingData;
     } else {
