@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:study_flutter_08_codingchef04_weather/model/model.dart';
 import 'package:timer_builder/timer_builder.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -17,8 +18,11 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  Model model = Model();
   String cityName = '';
   int temp = 0;
+  Widget icon = SvgPicture.asset('');
+  String desc = '';
   var date = DateTime.now();
 
   @override
@@ -36,6 +40,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
     cityName = weatherData['name'];
     print('--------- cityName : $cityName');
+
+    int condition = weatherData['weather'][0]['id'];
+    print('--------- condition : $condition');
+
+    icon = model.getWeatherIcon(condition);
+
+    desc = weatherData['weather'][0]['description'];
+    print('--------- desc : $desc');
   }
 
   String getSystemTime() {
@@ -137,7 +149,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '18\u2103',
+                              '$temp\u2103',
                               style: GoogleFonts.lato(
                                 fontSize: 85,
                                 fontWeight: FontWeight.w300,
@@ -146,12 +158,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             ),
                             Row(
                               children: [
-                                SvgPicture.asset('svg/climacon-sun.svg'),
+                                icon, //SvgPicture.asset('svg/climacon-sun.svg'),
                                 const SizedBox(
                                   height: 10,
+                                  width: 10,
                                 ),
                                 Text(
-                                  'clear sky',
+                                  desc,
                                   style: GoogleFonts.lato(
                                     fontSize: 16,
                                     color: Colors.white,
