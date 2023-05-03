@@ -7,10 +7,12 @@ import 'package:timer_builder/timer_builder.dart';
 
 class WeatherScreen extends StatefulWidget {
   final dynamic parseWeatherData;
+  final dynamic parseAirData;
 
   const WeatherScreen({
     super.key,
     this.parseWeatherData,
+    this.parseAirData,
   });
 
   @override
@@ -24,16 +26,24 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Widget icon = SvgPicture.asset('');
   String desc = '';
   var date = DateTime.now();
+  // -----------------------------
+  Widget airIcon = Image.asset('');
+  Widget airState = const Text('');
+  double dust10 = 0.0;
+  double dust2_5 = 0.0;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
     print('--------- widget.parseWeatherData : $widget.parseWeatherData');
-    updateData(widget.parseWeatherData);
+    print('--------- widget.parseAirData : $widget.parseAirData');
+
+    updateData(widget.parseWeatherData, widget.parseAirData);
   }
 
-  void updateData(dynamic weatherData) {
+  void updateData(dynamic weatherData, dynamic airData) {
     double temp2 = weatherData['main']['temp'];
     temp = temp2.toInt();
     print('--------- temp : $temp');
@@ -48,6 +58,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
     desc = weatherData['weather'][0]['description'];
     print('--------- desc : $desc');
+
+    // -----------------------------
+    int index = airData['list'][0]['main']['aqi'];
+    airIcon = model.getAirIcon(index);
+    airState = model.getAirCondition(index);
+    dust10 = airData['list'][0]['components']['pm10'];
+    dust2_5 = airData['list'][0]['components']['pm2_5'];
   }
 
   String getSystemTime() {
@@ -199,22 +216,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              Image.asset(
-                                'images/bad.png',
-                                width: 37,
-                                height: 35,
-                              ),
+                              airIcon,
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text(
-                                '"매우 나쁨"',
-                                style: GoogleFonts.lato(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
+                              airState,
                             ],
                           ),
                           Column(
@@ -230,7 +236,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 height: 10,
                               ),
                               Text(
-                                '174.75',
+                                '$dust10',
                                 style: GoogleFonts.lato(
                                   fontSize: 24,
                                   color: Colors.white,
@@ -262,7 +268,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 height: 10,
                               ),
                               Text(
-                                '84.03',
+                                '$dust2_5',
                                 style: GoogleFonts.lato(
                                   fontSize: 24,
                                   color: Colors.white,

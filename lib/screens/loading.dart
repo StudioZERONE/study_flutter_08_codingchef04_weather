@@ -25,6 +25,7 @@ class _LoadingState extends State<Loading> {
 
   void getLocation() async {
     String url;
+    String urlAir;
 
     MyLocation myLocation = MyLocation();
     await myLocation.getMyCurrentLocation();
@@ -39,19 +40,29 @@ class _LoadingState extends State<Loading> {
         'https://api.openweathermap.org/data/2.5/weather?lang=kr&units=metric&lat=$latitude3&lon=$longitude3&appid=$apikey';
     print('--------- url : $url');
 
+    urlAir =
+        'https://api.openweathermap.org/data/2.5/air_pollution?lang=kr&units=metric&lat=$latitude3&lon=$longitude3&appid=$apikey';
+    print('--------- urlAir : $urlAir');
+
     // OpenWeather 의 API Key 발급받기 전에 사용한 더미 데이터
     // Network network = Network(
     //     'https://samples.openweathermap.org/data/2.5/weather?q=London&appid=b1b15e88fa797225412429c1c50c122a1');
 
-    Network network = Network(url);
+    Network network = Network(url, urlAir);
 
     //https: //api.openweathermap.org/data/2.5/weather?lat=37.785834&lon=122.406417&appid=1ad9396df086a1befad00d8f03028105
 
     var weatherData = await network.getJsonData();
     print('--------- weatherData : $weatherData');
 
+    var airData = await network.getJsonDataAir();
+    print('--------- airData : $airData');
+
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return WeatherScreen(parseWeatherData: weatherData);
+      return WeatherScreen(
+        parseWeatherData: weatherData,
+        parseAirData: airData,
+      );
     }));
   }
 
