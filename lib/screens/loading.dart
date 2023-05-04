@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:study_flutter_08_codingchef04_weather/data/my_location.dart';
 import 'package:study_flutter_08_codingchef04_weather/data/network.dart';
 import 'package:study_flutter_08_codingchef04_weather/screens/weather_screen.dart';
@@ -69,19 +70,30 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.amber.shade200,
       appBar: AppBar(
         title: const Text('Loading..'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            minimumSize: const Size(150, 50),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SpinKitDoubleBounce(
+            color: Colors.white,
+            size: 80,
           ),
-          child: const Text('Get my location'),
-        ),
+          const SizedBox(
+            height: 200,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.amber,
+              foregroundColor: Colors.black,
+              minimumSize: const Size(150, 50),
+            ),
+            child: const Text('Get my location'),
+          ),
+        ],
       ),
     );
   }
