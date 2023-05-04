@@ -74,10 +74,11 @@ class _LoadingState extends State<Loading> {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: null,
+          onPressed: () {},
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
             foregroundColor: Colors.white,
+            minimumSize: const Size(150, 50),
           ),
           child: const Text('Get my location'),
         ),
