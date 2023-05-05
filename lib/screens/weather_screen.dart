@@ -34,7 +34,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState 
+    // TODO: implement initState
     super.initState();
 
     print('--------- widget.parseWeatherData : $widget.parseWeatherData');
@@ -196,98 +196,109 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ),
                   Column(
                     children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
                       const Divider(
                         height: 15,
                         thickness: 2,
                         color: Colors.white30,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'AQI(대기질)',
-                                style: GoogleFonts.lato(
-                                  fontSize: 14,
-                                  color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 30,
+                          bottom: 20,
+                          left: 10,
+                          right: 10,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  'AQI(대기질)',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              airIcon,
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              airState,
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                '미세먼지',
-                                style: GoogleFonts.lato(
-                                  fontSize: 14,
-                                  color: Colors.white,
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                '$dust10',
-                                style: GoogleFonts.lato(
-                                  fontSize: 24,
-                                  color: Colors.white,
+                                airIcon,
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                '㎍/㎥',
-                                style: GoogleFonts.lato(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                                airState,
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  '미세먼지',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                '초미세먼지',
-                                style: GoogleFonts.lato(
-                                  fontSize: 14,
-                                  color: Colors.white,
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                '$dust2_5',
-                                style: GoogleFonts.lato(
-                                  fontSize: 24,
-                                  color: Colors.white,
+                                Text(
+                                  '$dust10',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                '㎍/㎥',
-                                style: GoogleFonts.lato(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                Text(
+                                  '㎍/㎥',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  '초미세먼지',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  '$dust2_5',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  '㎍/㎥',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),
